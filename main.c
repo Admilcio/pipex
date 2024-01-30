@@ -2,6 +2,7 @@
 #include <sys/types.h>
 #include <unistd.h>  // for fork()
 #include <sys/wait.h>  // for wait()
+#include "pipex.h"
 
 // int main(void)
 // {
@@ -72,7 +73,7 @@
 //     if (child_pid == 0) {
 //         // Child process
 //         // Redirect stdout to the write end of the pipe
-//         dup2(pipefd[1], STDOUT_FILENO);
+//         dup2(pipefd[1], STDOU:/usr/local/binT_FILENO);
 //         close(pipefd[0]);  // Close the read end of the pipe
 
 //         // Execute cmd1
@@ -114,8 +115,7 @@
 //     return 0;
 // }
 
-/* Function that will look for the path line inside the environment, will
- split and test each command path and then return the right one. */
+
 char *find_path(char *cmd, char **envp)
 {
     // Declarando variáveis locais
@@ -132,7 +132,6 @@ char *find_path(char *cmd, char **envp)
     // Dividindo a linha PATH em partes usando ':' como delimitador
     paths = ft_split(envp[i] + 5, ':');
 
-    // Inicializando loop para testar cada caminho
     i = 0;
     while (paths[i])
     {
@@ -141,24 +140,17 @@ char *find_path(char *cmd, char **envp)
         path = ft_strjoin(part_path, cmd);
         free(part_path);
 
-        // Verificando se o executável existe no caminho atual
         if (access(path, F_OK) == 0)
             return (path);
 
-        // Liberando a memória alocada para o caminho atual
         free(path);
-
-        // Indo para o próximo caminho
         i++;
     }
-
-    // Liberando memória alocada para os caminhos
     i = -1;
     while (paths[++i])
         free(paths[i]);
     free(paths);
 
-    // Retornando NULL, indicando que o executável não foi encontrado
     return (0);
 }
 
@@ -168,29 +160,87 @@ void execute(char *argv, char **envp)
     int i;
     char *path;
 
-    // Inicializando i com -1
     i = -1;
 
-    // Dividindo a string do comando em partes usando ' ' como delimitador
     cmd = ft_split(argv, ' ');
-
-    // Encontrando o caminho do executável usando a função find_path
     path = find_path(cmd[0], envp);
 
-    // Verificando se o caminho foi encontrado
     if (!path)
     {
-        // Liberando a memória alocada para as partes do comando
         while (cmd[++i])
             free(cmd[i]);
         free(cmd);
 
-        // Chamando a função de erro (presumivelmente para lidar com o fato de que o caminho não foi encontrado)
-        error();
+        perror("path");
     }
-
-    // Executando o comando usando execve
+	printf("path: %s\n", path);
     if (execve(path, cmd, envp) == -1)
-        error();
+        perror("execve");
 }
 
+int main(int argc, char *argv[], char *envp[]) {
+    if (argc < 2) {
+        fprintf(stderr, "Usage: %s <command> [arguments...]\n", argv[0]);
+        return 1;
+    }
+
+    // Use the first argument as the command and the rest as arguments
+
+    printf("Executing command: %s\n", argv[1]);
+
+    // Call the execute function with command and arguments
+    execute(argv[1], envp);
+
+    // If execute function is successful, this line won't be reached
+    printf("After execute function (should not reach here)\n");
+
+    return 0;
+}
+
+// int main() {int main() {
+//     pid_t child_pid = fork();
+
+//     if (child_pid == -1) {
+//         perror("fork");
+//         exit(EXIT_FAILURE);
+//     }
+
+//     if (child_pid == 0) {
+//         // Código executado pelo processo filho
+
+//         printf("Filho: Processo filho executando...\n");
+//         sleep(5); // Simula alguma operação demorada
+//         printf("Filho: Processo filho concluído.\n");
+
+//         // Não é necessário chamar exit no processo filho, pois execve substitui a imagem do processo
+//     } else {
+//         // Código executado pelo processo pai
+
+//         printf("Pai: Processo pai esperando pelo filho...\n");
+//         waitpid(child_pid, NULL, 0);
+//         printf("Pai: Processo pai continuando após o término do filho.\n");
+//     }
+
+// 	printf("Processo %d terminando...\n", getpid());
+
+//     return 0;
+// }
+
+
+// int main(int argc, char *argv[], char *envp[]) {
+//     if (argc != 2) {
+//         fprintf(stderr, "Usage: %s <command>\n", argv[0]);
+//         return 1;
+//     }
+
+//     char *cmd = argv[1];
+//     char *full_path = find_path(cmd, envp);
+
+//     if (full_path) {
+//         printf("Full path for '%s': %s\n", cmd, full_path);
+//     } else {
+//         printf("'%s' not found in PATH\n", cmd);
+//     }
+//     free(full_path);
+//     return 0;
+// }
