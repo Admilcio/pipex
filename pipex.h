@@ -15,11 +15,9 @@
 
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/wait.h>
 # include <unistd.h>
 #include <sys/types.h>
 #include <unistd.h>  // for fork()
-#include <sys/wait.h>  // for wait()
 # include "./libs/libft/libft.h"
 # include "./libs/printf/ft_printf.h"
 
