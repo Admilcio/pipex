@@ -6,7 +6,7 @@
 #    By: ada-mata <ada-mata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/15 14:33:14 by ada-mata          #+#    #+#              #
-#    Updated: 2024/01/30 14:32:24 by ada-mata         ###   ########.fr        #
+#    Updated: 2024/02/01 17:00:29 by ada-mata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,3 +38,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+.SILENT:

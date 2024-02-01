@@ -6,7 +6,7 @@
 #    By: ada-mata <ada-mata@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/19 11:52:05 by mcerchi           #+#    #+#              #
-#    Updated: 2024/01/15 14:41:20 by ada-mata         ###   ########.fr        #
+#    Updated: 2024/02/01 16:59:33 by ada-mata         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC			= gcc
 
 RM			= rm -f
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -fPIE
 
 NAME = libft.a
 

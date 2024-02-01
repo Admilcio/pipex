@@ -1,0 +1,90 @@
+# Pipex
+
+## Introduction
+
+Pipex is a simple command-line utility that simulates the functionality of the shell pipeline in Unix-like operating systems. It takes two commands and two file names as arguments and executes the pipeline between the commands using two childlike processes.
+
+## Features
+
+- Supports input from a file and output to a file.
+- Implements a basic shell pipeline between two commands.
+- Utilizes fork, pipe, and execve system calls for process creation and management.
+
+## Getting Started
+
+### Prerequisites
+
+- A Unix-like operating system (Linux, macOS, etc.)
+- GCC compiler or another C compiler
+
+### Building
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/pipex.git
+cd pipex
+
+# Pipex
+
+## Introduction
+
+Pipex is a simple command-line utility that simulates the functionality of the shell pipeline in Unix-like operating systems. It takes two commands and two file names as arguments and executes the pipeline between the commands using two child processes.
+
+## Features
+
+- Supports input from a file and output to a file.
+- Implements a basic shell pipeline between two commands.
+- Utilizes fork, pipe, and execve system calls for process creation and management.
+
+## Getting Started
+
+### Prerequisites
+
+- A Unix-like operating system (Linux, macOS, etc.)
+- GCC compiler or another C compiler
+
+### Building
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/pipex.git
+cd pipex
+# Pipex
+
+## Introduction
+
+Pipex is a simple command-line utility that simulates the functionality of the shell pipeline in Unix-like operating systems. It takes two commands and two file names as arguments and executes the pipeline between the commands using two child processes.
+
+## Features
+
+- Supports input from a file and output to a file.
+- Implements a basic shell pipeline between two commands.
+- Utilizes fork, pipe, and execve system calls for process creation and management.
+
+## Getting Started
+
+### Prerequisites
+
+- A Unix-like operating system (Linux, macOS, etc.)
+- GCC compiler or another C compiler
+
+### Building
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/pipex.git
+cd pipex
+
+###Compile the program:
+make
+
+##Usage
+
+Run pipex with the following syntax:
+./pipex input_file cmd1 cmd2 output_file
+
+##Examples
+./pipex input.txt "cat -e" "grep hello" output.txt
