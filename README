@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Pipex is a simple command-line utility that simulates the functionality of the shell pipeline in Unix-like operating systems. It takes two commands and two file names as arguments and executes the pipeline between the commands using two child processes.
+Pipex is a simple command-line utility that simulates the functionality of the shell pipeline in Unix-like operating systems. It takes two commands and two file names as arguments and executes the pipeline between the commands using two childlike processes.
 
 ## Features
 
@@ -21,7 +21,7 @@ Pipex is a simple command-line utility that simulates the functionality of the s
 
 Clone the repository:
 
-```bash
+`bash
 git clone https://github.com/your-username/pipex.git
 cd pipex
 
