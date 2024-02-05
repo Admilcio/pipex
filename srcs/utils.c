@@ -12,7 +12,7 @@
 
 #include "../includes/pipex.h"
 
-static char	*path_not_found(char *path, char **paths)
+static char	*path_found(char *path, char **paths)
 {
 	int	i;
 
@@ -41,7 +41,7 @@ char	*find_path(char *cmd, char **envp)
 		path = ft_strjoin(part_path, cmd);
 		free(part_path);
 		if (access(path, F_OK) == 0)
-			return (path_not_found(path, paths));
+			return (path_found(path, paths));
 		free(path);
 		i++;
 	}
