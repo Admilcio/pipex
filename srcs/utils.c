@@ -60,7 +60,10 @@ void	exec_cmd(char *argv, char **envp)
 
 	i = -1;
 	cmd = ft_split(argv, ' ');
-	path = find_path(cmd[0], envp);
+	if (ft_strchr(cmd[0], '/') != NULL)
+		path = cmd[0];
+	else
+		path = find_path(cmd[0], envp);
 	if (!path)
 	{
 		while (cmd[++i])
