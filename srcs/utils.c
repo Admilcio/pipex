@@ -6,7 +6,7 @@
 /*   By: ada-mata <ada-mata@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:43:18 by ada-mata          #+#    #+#             */
-/*   Updated: 2024/02/02 17:03:39 by ada-mata         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:02:25 by ada-mata         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*find_path(char *cmd, char **envp)
 	i = 0;
 	while (envp[i] && ft_strnstr(envp[i], "PATH", 4) == NULL)
 		i++;
+	if(!(envp[i] && ft_strnstr(envp[i], "PATH", 4) == NULL))
+		error();
 	paths = ft_split(envp[i] + 5, ':');
 	i = 0;
 	while (paths[i])
@@ -60,6 +62,8 @@ void	exec_cmd(char *argv, char **envp)
 
 	i = -1;
 	cmd = ft_split(argv, ' ');
+	if(!cmd[0])
+		error();
 	if (ft_strchr(cmd[0], '/') != NULL)
 		path = cmd[0];
 	else
@@ -71,7 +75,6 @@ void	exec_cmd(char *argv, char **envp)
 		free(cmd);
 		error();
 	}
-	printf("path: %s\n", path);
 	if (execve(path, cmd, envp) == -1)
 		error();
 }
